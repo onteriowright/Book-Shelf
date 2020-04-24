@@ -1,0 +1,45 @@
+﻿@model BookShelf.Models.ViewModels.BookFormViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Book</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Authur" class="control-label"></label>
+                <input asp-for="Authur" class="form-control" />
+                <span asp-validation-for="Authur" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SelectedGenreIds" class="control-label"></label>
+                <select multiple asp-for="SelectedGenreIds" asp-items="@Model.GenreOptions" class="form-control">
+                    <option disabled>Select Genres</option>
+                </select>
+                <span asp-validation-for="SelectedGenreIds" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
